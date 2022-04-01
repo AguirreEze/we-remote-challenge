@@ -2,13 +2,13 @@ import type { NextPage } from "next"
 import Head from "next/head"
 import Link from "next/link"
 import { FormEvent, useState } from "react"
-import { search, clearInput } from "services/search"
+import { searchInApi, clearInput } from "services/search"
 
 const Home: NextPage = () => {
   const [input, setInput] = useState<string>("")
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
-    search(input).then(console.log)
+    searchInApi(input).then(console.log)
   }
 
   return (
@@ -25,7 +25,7 @@ const Home: NextPage = () => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
-        <Link href={`/search=${clearInput(input)}`}>
+        <Link href={`/search/${clearInput(input)}`}>
           <a>
             <button type="submit">search</button>
           </a>
