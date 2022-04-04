@@ -4,6 +4,7 @@ import { getSearchURL } from "services/search"
 
 export default function SearchBar() {
   const [input, setInput] = useState<string>("")
+  const [important, setImportant] = useState<boolean>(false)
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
   }
@@ -14,11 +15,13 @@ export default function SearchBar() {
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <Link href={getSearchURL(input)}>
+      <Link href={getSearchURL(input, "1", important)}>
         <a>
           <button type="submit">search</button>
         </a>
       </Link>
+      <label>show important</label>
+      <input type="checkbox" onChange={() => setImportant(!important)} />
     </form>
   )
 }

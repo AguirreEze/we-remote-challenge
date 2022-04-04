@@ -17,7 +17,13 @@ export function searchInApi<T>({
 }
 const regEx = /\s+/g
 
-export function getSearchURL(search: string, page?: string): string {
+export function getSearchURL(
+  search: string,
+  page: string,
+  important: boolean
+): string {
   const dataFromImput = search.toLowerCase().trim().replaceAll(regEx, "+")
+  if (important)
+    return `/search?search=${dataFromImput}&page=${page || 1}&important=true`
   return `/search?search=${dataFromImput}&page=${page || 1}`
 }
