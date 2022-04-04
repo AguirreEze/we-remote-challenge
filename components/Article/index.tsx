@@ -1,9 +1,9 @@
 import Image from "next/image"
-import { ArticleType } from "types"
+import { ArticlePreviewType } from "types"
 import styles from "./styles.module.scss"
 
 interface Iprops {
-  data: ArticleType
+  data: ArticlePreviewType
 }
 export default function Article({ data }: Iprops) {
   return (
