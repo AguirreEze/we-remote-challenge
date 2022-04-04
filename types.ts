@@ -1,18 +1,18 @@
 interface Categories {
   name: string
 }
-interface Article {
+export interface ArticleType {
   id: number
   title: string
   categories: Categories[]
-}
-
-export interface SeachResult {
-  data: Article[]
-  size: number
-  pages: number
   headline: string
   featured_media: {
     thumbnail: string
   }
+}
+
+export interface SeachResult {
+  data: ArticleType[]
+  size: number
+  pages: number
 }

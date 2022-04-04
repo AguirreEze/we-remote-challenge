@@ -1,3 +1,4 @@
+import Article from "components/Article"
 import Pagination from "components/Pagination"
 import { GetServerSideProps } from "next"
 import { useRouter } from "next/router"
@@ -26,9 +27,11 @@ export default function Search({ info, noResults }: Iprops) {
             {search} ({info.size} resultados)
           </h1>
         )}
-        {info.data?.map((elem) => (
-          <h2 key={elem.id}>{elem.title}</h2>
-        ))}
+        <ul className={styles.list}>
+          {info.data?.map((elem) => (
+            <Article key={elem.id} data={elem} />
+          ))}
+        </ul>
       </section>
       <footer>
         <Pagination currentPage={parseInt(page)} totalPages={info.pages} />
