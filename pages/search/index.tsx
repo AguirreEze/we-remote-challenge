@@ -1,3 +1,4 @@
+import Pagination from "components/Pagination"
 import { GetServerSideProps } from "next"
 import { useRouter } from "next/router"
 import { searchInApi } from "services/search"
@@ -9,18 +10,23 @@ interface Iprops {
 
 export default function Search({ info }: Iprops) {
   const router = useRouter()
-  const { search } = router.query
+  const { search, page } = router.query
 
   return (
     <>
-      <h1>
-        {search}({info.size} resultados)
-      </h1>
-      {info.data?.length ? (
-        info.data?.map((elem) => <h2 key={elem.id}>{elem.title}</h2>)
-      ) : (
-        <h3>¡No hay artículos relacionados con el término de búsqueda!</h3>
-      )}
+      <section>
+        <h1>
+          {search}({info.size} resultados)
+        </h1>
+        {info.data?.length ? (
+          info.data?.map((elem) => <h2 key={elem.id}>{elem.title}</h2>)
+        ) : (
+          <h3>¡No hay artículos relacionados con el término de búsqueda!</h3>
+        )}
+      </section>
+      <footer>
+        <Pagination currentPage={parseInt(page)} totalPages={info.pages} />
+      </footer>
     </>
   )
 }

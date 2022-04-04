@@ -8,7 +8,9 @@ interface Iprops {
 export default function Layout({ children }: Iprops) {
   return (
     <>
-      <SearchBar />
+      <header>
+        <SearchBar />
+      </header>
       {children}
     </>
   )
