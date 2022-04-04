@@ -1,7 +1,6 @@
 .container {
   display: grid;
   grid-template-columns: 150px 1fr;
-  max-width: 90%;
   gap: 0 0.75rem;
   border: 1px solid transparent;
   border-radius: 5px;
@@ -15,7 +14,6 @@
 .categories {
   display: flex;
   flex-direction: row;
-  grid-area: categories;
   font-size: small;
 }
 .title {
