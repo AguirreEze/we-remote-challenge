@@ -2,10 +2,12 @@
   display: grid;
   grid-template-columns: 150px 1fr;
   max-width: 90%;
-  gap: 0 1rem;
+  gap: 0 0.75rem;
   border: 1px solid transparent;
   border-radius: 5px;
   overflow: hidden;
+  cursor: pointer;
+  width: 100%;
   &:hover {
     border: 1px solid var(--primary-color);
   }
