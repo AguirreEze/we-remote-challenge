@@ -19,7 +19,7 @@ const regEx = /\s+/g
 
 export function getSearchURL(
   search: string,
-  page: string,
+  page: string | number,
   important: boolean
 ): string {
   const dataFromImput = search.toLowerCase().trim().replaceAll(regEx, "+")
