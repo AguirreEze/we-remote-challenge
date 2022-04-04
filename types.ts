@@ -31,5 +31,7 @@ export interface ArticleType {
   content: string
   tags: Tags[]
   bibliography: string
-  author?: string
+  author?: {
+    name: string
+  }
 }
