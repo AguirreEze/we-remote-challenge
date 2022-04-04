@@ -47,7 +47,10 @@ export default function Pagination({ currentPage, totalPages }: Iprops) {
       )}
       {pageNumbers.map((page) => (
         <Link href={getSearchURL(search, page, !!important)}>
-          <li key={page} className={styles.item}>
+          <li
+            key={page}
+            className={page === currentPage ? styles.itemSelected : styles.item}
+          >
             <a>{page}</a>
           </li>
         </Link>

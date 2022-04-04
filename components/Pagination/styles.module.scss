@@ -21,3 +21,10 @@
     color: white;
   }
 }
+
+.itemSelected {
+  @extend .item;
+  color: white;
+  background-color: var(--primary-color);
+  pointer-events: none;
+}
