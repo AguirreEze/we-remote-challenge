@@ -1,12 +1,23 @@
 const baseURL = "https://beta.mejorconsalud.com/wp-json/mc/v3/posts?search="
 
-export function searchInApi<T>(data: string): Promise<T> {
-  return fetch(`${baseURL}${data}`, { method: "GET" }).then((data) =>
-    data.json()
-  )
+interface SearchObject {
+  search: string
+  page: string
+  important?: boolean
+}
+
+export function searchInApi<T>({
+  search,
+  page,
+  important,
+}: SearchObject): Promise<T> {
+  let searchURL = `${baseURL}${search}&page=${page}`
+  if (important) searchURL = searchURL.concat(`&orderby=relevance`)
+  return fetch(searchURL, { method: "GET" }).then((data) => data.json())
 }
 const regEx = /\s+/g
 
-export function clearInput(data: string): string {
-  return data.toLowerCase().trim().replaceAll(regEx, "+")
+export function getSearchURL(search: string, page?: string): string {
+  const dataFromImput = search.toLowerCase().trim().replaceAll(regEx, "+")
+  return `/search?search=${dataFromImput}&page=${page || 1}`
 }
