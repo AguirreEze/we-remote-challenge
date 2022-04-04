@@ -1,6 +1,7 @@
 import Article from "components/Article"
 import Pagination from "components/Pagination"
 import { GetServerSideProps } from "next"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import { searchInApi, getDefaultData } from "services/search"
 import { SeachResult } from "types"
@@ -14,6 +15,8 @@ interface Iprops {
 export default function Search({ info, noResults }: Iprops) {
   const router = useRouter()
   const { search, page } = router.query
+
+  if (!page || Array.isArray(page)) return null
 
   return (
     <>
@@ -29,7 +32,11 @@ export default function Search({ info, noResults }: Iprops) {
         )}
         <ul className={styles.list}>
           {info.data?.map((elem) => (
-            <Article key={elem.id} data={elem} />
+            <Link href={`/article/${elem.id}`} key={elem.id}>
+              <a>
+                <Article data={elem} />
+              </a>
+            </Link>
           ))}
         </ul>
       </section>
