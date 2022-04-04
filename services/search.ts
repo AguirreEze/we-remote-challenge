@@ -23,6 +23,7 @@ export function getSearchURL(
   important: boolean
 ): string {
   const dataFromImput = search.toLowerCase().trim().replaceAll(regEx, "+")
+  if (dataFromImput === "") return "/"
   if (important)
     return `/search?search=${dataFromImput}&page=${page || 1}&important=true`
   return `/search?search=${dataFromImput}&page=${page || 1}`
