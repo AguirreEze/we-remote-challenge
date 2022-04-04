@@ -42,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!search) return { notFound: true }
   if (Array.isArray(search)) return { notFound: true }
   if (Array.isArray(page)) return { notFound: true }
-  const data = await searchInApi({
+  const data: SeachResult = await searchInApi({
     search: search,
     page: page || "1",
     important: !!important,
