@@ -34,6 +34,8 @@ export default function Search({ info }: Iprops) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { search, page, important } = context.query
   if (!search) return { notFound: true }
+  if (Array.isArray(search)) return { notFound: true }
+  if (Array.isArray(page)) return { notFound: true }
   const data = await searchInApi({
     search: search,
     page: page || "1",
