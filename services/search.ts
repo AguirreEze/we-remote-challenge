@@ -27,3 +27,10 @@ export function getSearchURL(
     return `/search?search=${dataFromImput}&page=${page || 1}&important=true`
   return `/search?search=${dataFromImput}&page=${page || 1}`
 }
+
+export function getDefaultData() {
+  return fetch(
+    "https://beta.mejorconsalud.com/wp-json/mc/v3/posts?orderby=date&order=desc",
+    { method: "GET" }
+  ).then((data) => data.json())
+}

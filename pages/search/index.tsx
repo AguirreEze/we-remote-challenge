@@ -1,28 +1,34 @@
 import Pagination from "components/Pagination"
 import { GetServerSideProps } from "next"
 import { useRouter } from "next/router"
-import { searchInApi } from "services/search"
+import { searchInApi, getDefaultData } from "services/search"
 import { SeachResult } from "types"
+import styles from "./styles.module.scss"
 
 interface Iprops {
   info: SeachResult
+  noResults: boolean
 }
 
-export default function Search({ info }: Iprops) {
+export default function Search({ info, noResults }: Iprops) {
   const router = useRouter()
   const { search, page } = router.query
 
   return (
     <>
       <section>
-        <h1>
-          {search}({info.size} resultados)
-        </h1>
-        {info.data?.length ? (
-          info.data?.map((elem) => <h2 key={elem.id}>{elem.title}</h2>)
+        {noResults ? (
+          <h1 className={styles.title}>
+            ¡No hay artículos relacionados con el término de búsqueda!
+          </h1>
         ) : (
-          <h3>¡No hay artículos relacionados con el término de búsqueda!</h3>
+          <h1 className={styles.title}>
+            {search} ({info.size} resultados)
+          </h1>
         )}
+        {info.data?.map((elem) => (
+          <h2 key={elem.id}>{elem.title}</h2>
+        ))}
       </section>
       <footer>
         <Pagination currentPage={parseInt(page)} totalPages={info.pages} />
@@ -41,5 +47,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     page: page || "1",
     important: !!important,
   })
-  return { props: { info: data } }
+  if (data.size === 0) {
+    const defaultData = await getDefaultData()
+    return { props: { info: defaultData, noResults: true } }
+  }
+  return { props: { info: data, noResults: false } }
 }

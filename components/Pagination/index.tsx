@@ -34,12 +34,12 @@ export default function Pagination({ currentPage, totalPages }: Iprops) {
       {currentPage !== 1 && (
         <>
           <Link href={getSearchURL(search, 1, !!important)}>
-            <li className={styles.item}>
+            <li key={"<<"} className={styles.item}>
               <a>{"<<"}</a>
             </li>
           </Link>
           <Link href={getSearchURL(search, currentPage - 1, !!important)}>
-            <li className={styles.item}>
+            <li key={"<"} className={styles.item}>
               <a>{"<"}</a>
             </li>
           </Link>
@@ -58,12 +58,12 @@ export default function Pagination({ currentPage, totalPages }: Iprops) {
       {currentPage < totalPages && (
         <>
           <Link href={getSearchURL(search, currentPage + 1, !!important)}>
-            <li className={styles.item}>
+            <li key={">"} className={styles.item}>
               <a>{">"}</a>
             </li>
           </Link>
           <Link href={getSearchURL(search, totalPages, !!important)}>
-            <li className={styles.item}>
+            <li key={">>"} className={styles.item}>
               <a>{">>"}</a>
             </li>
           </Link>
