@@ -22,11 +22,11 @@ export default function Article({ data }: Iprops) {
         </ul>
       </div>
       <span className={styles.date}>Publicado {date.toDateString()}</span>
-      {data.author && <h2>Published by: {data.author}</h2>}
 
       <div
         dangerouslySetInnerHTML={{ __html: sanitizeHtml(data.content) }}
       ></div>
+      {data.author && <h2>Published by: {data.author.name}</h2>}
       <h2>Bibliografia</h2>
       <div
         dangerouslySetInnerHTML={{ __html: sanitizeHtml(data.bibliography) }}
@@ -38,7 +38,6 @@ export default function Article({ data }: Iprops) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.params!
   if (!id) return { notFound: true }
-  const data = await getArticleData(id)
-
+  const data = await getArticleData(Array.isArray(id) ? id[0] : id)
   return { props: { data: data } }
 }
