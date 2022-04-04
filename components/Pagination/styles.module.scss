@@ -10,14 +10,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid lightseagreen;
+  border: 1px solid var(--primary-color);
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  color: lightseagreen;
+  color: var(--primary-color);
   cursor: pointer;
   &:hover {
-    background-color: lightseagreen;
+    background-color: var(--primary-color);
     color: white;
   }
 }

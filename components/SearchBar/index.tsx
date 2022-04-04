@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { FormEvent, useState } from "react"
 import { getSearchURL } from "services/search"
+import styles from "./styles.module.scss"
 
 export default function SearchBar() {
   const [input, setInput] = useState<string>("")
@@ -9,19 +10,26 @@ export default function SearchBar() {
     event.preventDefault()
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <Link href={getSearchURL(input, "1", important)}>
-        <a>
-          <button type="submit">search</button>
-        </a>
-      </Link>
-      <label>show important</label>
-      <input type="checkbox" onChange={() => setImportant(!important)} />
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <div className={styles.inputRow}>
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          className={styles.input}
+        />
+        <Link href={getSearchURL(input, "1", important)}>
+          <a>
+            <button type="submit" className={styles.button}>
+              search
+            </button>
+          </a>
+        </Link>
+      </div>
+      <div>
+        <label className={styles.label}>show important</label>
+        <input type="checkbox" onChange={() => setImportant(!important)} />
+      </div>
     </form>
   )
 }
