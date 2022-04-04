@@ -27,6 +27,8 @@ export default function Pagination({ currentPage, totalPages }: Iprops) {
   const router = useRouter()
   const { search, important } = router.query
 
+  if (!search || Array.isArray(search)) return null
+
   const pageNumbers = getPages(currentPage, totalPages)
 
   return (
@@ -34,38 +36,49 @@ export default function Pagination({ currentPage, totalPages }: Iprops) {
       {currentPage !== 1 && (
         <>
           <Link href={getSearchURL(search, 1, !!important)}>
-            <li key={"<<"} className={styles.item}>
-              <a>{"<<"}</a>
-            </li>
+            <a>
+              <li key={"<<"} className={styles.item}>
+                {"<<"}
+              </li>
+            </a>
           </Link>
           <Link href={getSearchURL(search, currentPage - 1, !!important)}>
-            <li key={"<"} className={styles.item}>
-              <a>{"<"}</a>
-            </li>
+            <a>
+              <li key={"<"} className={styles.item}>
+                {"<"}
+              </li>
+            </a>
           </Link>
         </>
       )}
       {pageNumbers.map((page) => (
-        <Link href={getSearchURL(search, page, !!important)}>
-          <li
-            key={page}
-            className={page === currentPage ? styles.itemSelected : styles.item}
-          >
-            <a>{page}</a>
-          </li>
+        <Link href={getSearchURL(search, page, !!important)} key={page}>
+          <a>
+            <li
+              className={
+                page === currentPage ? styles.itemSelected : styles.item
+              }
+            >
+              {page}
+            </li>
+          </a>
         </Link>
       ))}
       {currentPage < totalPages && (
         <>
           <Link href={getSearchURL(search, currentPage + 1, !!important)}>
-            <li key={">"} className={styles.item}>
-              <a>{">"}</a>
-            </li>
+            <a>
+              <li key={">"} className={styles.item}>
+                {">"}
+              </li>
+            </a>
           </Link>
           <Link href={getSearchURL(search, totalPages, !!important)}>
-            <li key={">>"} className={styles.item}>
-              <a>{">>"}</a>
-            </li>
+            <a>
+              <li key={">>"} className={styles.item}>
+                {">>"}
+              </li>
+            </a>
           </Link>
         </>
       )}
