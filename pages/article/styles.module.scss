@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 0;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+.tags {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  list-style: none;
+  gap: 1rem;
+  li {
+    padding: 0 0.3rem 0 0.7rem;
+    border: 1px solid var(--primary-color);
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+  }
+}
+
+.date {
+  font-size: 0.8rem;
+}
