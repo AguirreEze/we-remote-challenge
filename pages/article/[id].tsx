@@ -11,6 +11,7 @@ interface Iprops {
 
 export default function Article({ data }: Iprops) {
   const date = new Date(data.published)
+  console.log(data.bibliography)
   return (
     <>
       <Head>
@@ -32,10 +33,16 @@ export default function Article({ data }: Iprops) {
           dangerouslySetInnerHTML={{ __html: sanitizeHtml(data.content) }}
         ></div>
         {data.author && <h2>Published by: {data.author.name}</h2>}
-        <h2>Bibliografia</h2>
-        <div
-          dangerouslySetInnerHTML={{ __html: sanitizeHtml(data.bibliography) }}
-        ></div>
+        {data.bibliography && (
+          <>
+            <h2>Bibliografia</h2>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: sanitizeHtml(data.bibliography),
+              }}
+            ></div>
+          </>
+        )}
       </article>
     </>
   )
