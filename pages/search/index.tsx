@@ -1,6 +1,7 @@
 import Article from "components/Article"
 import Pagination from "components/Pagination"
 import { GetServerSideProps } from "next"
+import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { searchInApi, getDefaultData } from "services/search"
@@ -18,6 +19,9 @@ export default function Search({ info, noResults }: Iprops) {
 
   return (
     <>
+      <Head>
+        <title>Resultado de búsqueda para {search}</title>
+      </Head>
       <section>
         {noResults ? (
           <h1 className={styles.title}>
