@@ -38,6 +38,6 @@ export default function Article({ data }: Iprops) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.params!
   if (!id) return { notFound: true }
-  const data = await getArticleData(Array.isArray(id) ? id[0] : id)
+  const data = await getArticleData(id as string)
   return { props: { data: data } }
 }

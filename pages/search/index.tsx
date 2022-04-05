@@ -16,8 +16,6 @@ export default function Search({ info, noResults }: Iprops) {
   const router = useRouter()
   const { search, page } = router.query
 
-  if (!page || Array.isArray(page)) return null
-
   return (
     <>
       <section>
@@ -41,7 +39,10 @@ export default function Search({ info, noResults }: Iprops) {
         </ul>
       </section>
       <footer>
-        <Pagination currentPage={parseInt(page)} totalPages={info.pages} />
+        <Pagination
+          currentPage={parseInt(page as string)}
+          totalPages={info.pages}
+        />
       </footer>
     </>
   )
@@ -50,11 +51,9 @@ export default function Search({ info, noResults }: Iprops) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { search, page, important } = context.query
   if (!search) return { notFound: true }
-  if (Array.isArray(search)) return { notFound: true }
-  if (Array.isArray(page)) return { notFound: true }
   const data: SeachResult = await searchInApi({
-    search: search,
-    page: page || "1",
+    search: search as string,
+    page: (page as string) || "1",
     important: !!important,
   })
   if (data.size === 0) {

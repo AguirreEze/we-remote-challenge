@@ -27,22 +27,22 @@ export default function Pagination({ currentPage, totalPages }: Iprops) {
   const router = useRouter()
   const { search, important } = router.query
 
-  if (!search || Array.isArray(search)) return null
-
   const pageNumbers = getPages(currentPage, totalPages)
 
   return (
     <ul className={styles.list}>
       {currentPage !== 1 && (
         <>
-          <Link href={getSearchURL(search, 1, !!important)}>
+          <Link href={getSearchURL(search as string, 1, !!important)}>
             <a>
               <li key={"<<"} className={styles.item}>
                 {"<<"}
               </li>
             </a>
           </Link>
-          <Link href={getSearchURL(search, currentPage - 1, !!important)}>
+          <Link
+            href={getSearchURL(search as string, currentPage - 1, !!important)}
+          >
             <a>
               <li key={"<"} className={styles.item}>
                 {"<"}
@@ -52,7 +52,10 @@ export default function Pagination({ currentPage, totalPages }: Iprops) {
         </>
       )}
       {pageNumbers.map((page) => (
-        <Link href={getSearchURL(search, page, !!important)} key={page}>
+        <Link
+          href={getSearchURL(search as string, page, !!important)}
+          key={page}
+        >
           <a>
             <li
               className={
@@ -66,14 +69,16 @@ export default function Pagination({ currentPage, totalPages }: Iprops) {
       ))}
       {currentPage < totalPages && (
         <>
-          <Link href={getSearchURL(search, currentPage + 1, !!important)}>
+          <Link
+            href={getSearchURL(search as string, currentPage + 1, !!important)}
+          >
             <a>
               <li key={">"} className={styles.item}>
                 {">"}
               </li>
             </a>
           </Link>
-          <Link href={getSearchURL(search, totalPages, !!important)}>
+          <Link href={getSearchURL(search as string, totalPages, !!important)}>
             <a>
               <li key={">>"} className={styles.item}>
                 {">>"}
