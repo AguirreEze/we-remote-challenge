@@ -1,12 +1,15 @@
 import SearchBar from "components/SearchBar"
+import useLoading from "hooks/useLoading"
 import Head from "next/head"
 import { ReactNode } from "react"
+import styles from "./styles.module.scss"
 
 interface Iprops {
   children: ReactNode
 }
 
 export default function Layout({ children }: Iprops) {
+  const { loading } = useLoading()
   return (
     <>
       <Head>
@@ -17,7 +20,19 @@ export default function Layout({ children }: Iprops) {
       <header>
         <SearchBar />
       </header>
-      {children}
+      {loading ? (
+        <>
+          <Head>
+            <title>Loading...</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          <section className={styles.loading}>
+            <h1 className={styles.title}>Loading...</h1>
+          </section>
+        </>
+      ) : (
+        children
+      )}
     </>
   )
 }
