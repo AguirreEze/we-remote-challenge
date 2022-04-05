@@ -28,7 +28,7 @@ export default function SearchBar() {
       </div>
       <div>
         <label className={styles.label}>show important</label>
-        <input type="checkbox" onChange={() => setImportant(!important)} />
+        <input type="radio" onChange={() => setImportant(!important)} />
       </div>
     </form>
   )
