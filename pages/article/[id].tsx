@@ -11,7 +11,6 @@ interface Iprops {
 
 export default function Article({ data }: Iprops) {
   const date = new Date(data.published)
-  console.log(data.bibliography)
   return (
     <>
       <Head>
