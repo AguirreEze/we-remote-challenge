@@ -1,13 +1,14 @@
 import type { NextPage } from "next"
+import styles from "./styles.module.scss"
 
 const Home: NextPage = () => {
   return (
     <>
-      <h1>Welcome to my first Search page</h1>
-      <h2>
-        type on the search bar at the top and click search! (enter works as
+      <h1 className={styles.title}>We Remote challenge</h1>
+      <p className={styles.description}>
+        Type on the search bar at the top and click search! (enter works as
         well)
-      </h2>
+      </p>
     </>
   )
 }
