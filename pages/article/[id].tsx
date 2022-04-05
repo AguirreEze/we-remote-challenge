@@ -17,9 +17,9 @@ export default function Article({ data }: Iprops) {
         <title>{data.title}</title>
       </Head>
       <article className={styles.container}>
-        <h1>{data.title}</h1>
+        <h1 className={styles.title}>{data.title}</h1>
         <div className={styles.tagsContainer}>
-          <h2>Tags :</h2>
+          <h2>Tags</h2>
           <ul className={styles.tags}>
             {data.tags.map((tag) => (
               <li key={tag.id}>{tag.name}</li>

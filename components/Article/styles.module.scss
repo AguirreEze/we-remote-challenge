@@ -15,9 +15,11 @@
   display: flex;
   flex-direction: row;
   font-size: small;
+  color: var(--secondary-color);
 }
 .title {
   margin: 0.5rem 0;
+  color: var(--primary-color);
 }
 .headline {
   margin: 0;
